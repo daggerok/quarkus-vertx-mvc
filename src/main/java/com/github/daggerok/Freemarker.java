@@ -65,7 +65,6 @@ public class Freemarker {
         public CompletableFuture<Response> render() {
             CompletableFuture<Response> response = new CompletableFuture<>();
             engine.render(this.attributes, "templates/" + this.view, r -> {
-                // response.completeExceptionally(new RuntimeException("oops"));
                 if (r.failed()) response.complete(
                         Response.status(Status.BAD_REQUEST)
                                 .entity(r.cause().getLocalizedMessage())

@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-@Path("/")
+@Path("")
 public class IndexPage {
 
     @Inject
@@ -30,7 +30,7 @@ public class IndexPage {
     }
 
     @GET
-    @Path("{path}") // @Path("{path: .*}")
+    @Path("{path}")
     public CompletableFuture<Response> path(@PathParam("path") String path) {
         return freemarker.view("index.ftl").render(
             Collections.singletonMap("message", String.format("Hello '%s' path!", path)));

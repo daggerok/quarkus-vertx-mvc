@@ -5,7 +5,5 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @ApplicationScoped
-@ApplicationPath("/")
-public class MvcConfig extends Application {
-    // ,,,
-}
+@ApplicationPath("")
+public class MvcConfig extends Application { }
