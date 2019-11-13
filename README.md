@@ -1,5 +1,7 @@
-# quarkus vertx thymeleaf
-Quarkus + Vertx + Thymeleaf (native builds doesn't work because of Thymeleaf)
+# quarkus vertx freemarker
+Quarkus + Vertx + Freemarker
+
+(native builds doesn't work because of Thymeleaf)
 
 ## dev
 
@@ -19,7 +21,7 @@ http :8080
 ## native
 
 NOTE: In general with supported library this approach should works fine. But
-now unfoturnately, Thymeleaf apps are not supported for native builds...
+now unfoturnately, Freemarker apps are not supported for native builds...
 
 ```bash
 docker build -f src/main/docker/Dockerfile.multistage -t daggerok/native-build .

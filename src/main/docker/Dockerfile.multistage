@@ -4,8 +4,6 @@
 FROM quay.io/quarkus/centos-quarkus-maven:19.2.1 AS builder
 USER root
 WORKDIR /tmp/app/
-COPY pom.xml .
-RUN mvn dependency:tree
 COPY . .
 RUN chown -Rc quarkus /tmp/app
 USER quarkus
