@@ -8,7 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
-@Path("")
+@Path("/")
 public class IndexPage {
 
     @Inject
@@ -18,5 +18,12 @@ public class IndexPage {
     public CompletionStage<Response> greeting() {
         return thymeleaf.view("index.html").render(
             Collections.singletonMap("message", "Hello!"));
+    }
+
+    @GET
+    @Path("/a/b/c")
+    public CompletionStage<Response> abc() {
+        return thymeleaf.view("index.html").render(
+            Collections.singletonMap("message", "Hello, abc!"));
     }
 }
