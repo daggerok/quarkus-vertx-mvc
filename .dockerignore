@@ -1,0 +1,7 @@
+*
+# Using src/main/docker/Dockerfile.multistage only!
+# !target/*-runner
+# !target/*-runner.jar
+# !target/lib/*
+!src
+!pom.xml
