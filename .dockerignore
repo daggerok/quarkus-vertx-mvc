@@ -1,7 +1,8 @@
 *
-# Using src/main/docker/Dockerfile.multistage only!
-# !target/*-runner
-# !target/*-runner.jar
-# !target/lib/*
-!src
-!pom.xml
+## Using src/main/docker/Dockerfile.multistage only!
+!target/*-runner
+!target/*-runner.jar
+!target/lib/*
+## Using Dockerfile.jvm and Dockerfile.native
+#!src
+#!pom.xml
