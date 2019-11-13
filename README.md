@@ -29,4 +29,5 @@ http :8080
 
 ## links
 
+* https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#strings
 * https://docs.jboss.org/resteasy/docs/3.6.0.Final/userguide/html/Asynchronous_HTTP_Request_Processing.html

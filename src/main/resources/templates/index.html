@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <p>[[ ${message} ]]</p>
+    <h2>[[ ${message} ]]</h2>
+    <!--/*@thymesVar id="path" type="com.github.daggerok.IndexPage"*/-->
+    <p th:if="${path} != null">path: [[ ${path} ]]</p>
 </body>
 </html>
