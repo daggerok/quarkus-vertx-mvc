@@ -6,4 +6,4 @@ import javax.ws.rs.core.Application;
 
 @ApplicationScoped
 @ApplicationPath("")
-public class MvcConfig extends Application {}
+public class MvcConfig extends Application { }

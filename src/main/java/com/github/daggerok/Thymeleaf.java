@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 @Singleton
-// @ApplicationScoped
 public class Thymeleaf {
 
     @Inject
