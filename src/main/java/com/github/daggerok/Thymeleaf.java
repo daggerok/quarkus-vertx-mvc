@@ -2,7 +2,9 @@ package com.github.daggerok;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 import javax.annotation.PostConstruct;
@@ -26,39 +28,43 @@ public class Thymeleaf {
     private TemplateEngine engine;
 
     @PostConstruct
-    public void setupThymeleaf() {
+    public void setup() {
         engine = ThymeleafTemplateEngine.create(vertx);
     }
 
-    public ViewBuilder view(String template) {
-        return ViewBuilder.of(engine).view(template);
+    public Rendering view(String template) {
+        return Rendering.of(engine).view(template);
     }
 
-    public static class ViewBuilder {
+    public static class Rendering {
 
         private TemplateEngine engine;
         private String view;
         private Map<String, Object> attributes;
 
-        private ViewBuilder(TemplateEngine engine, String view, Map<String, Object> attributes) {
+        private Rendering(TemplateEngine engine, String view, Map<String, Object> attributes) {
             this.engine = engine;
             this.view = view;
             this.attributes = attributes;
         }
-        public static ViewBuilder of(TemplateEngine engine) {
-            return new ViewBuilder(engine, "index.html", Collections.emptyMap());
+
+        private static Rendering of(TemplateEngine engine) {
+            Objects.requireNonNull(engine, "Template engine may not be null.");
+            return new Rendering(engine, "index.html", Collections.emptyMap());
         }
-        public ViewBuilder view(String view) {
+
+        private Rendering view(String view) {
+            Objects.requireNonNull(view, "Template view may not be null.");
             this.view = view;
             return this;
         }
-        public ViewBuilder attributes(Map<String, Object> attributes) {
-            this.attributes = attributes;
-            return this;
-        }
+
         public CompletableFuture<Response> render(Map<String, Object> attributes) {
-            return this.attributes(attributes).render();
+            Objects.requireNonNull(attributes, "Template attributes may not be null.");
+            this.attributes = attributes;
+            return render();
         }
+
         public CompletableFuture<Response> render() {
             CompletableFuture<Response> response = new CompletableFuture<>();
             engine.render(this.attributes, "templates/" + this.view, r -> {
