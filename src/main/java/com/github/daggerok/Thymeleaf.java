@@ -1,11 +1,8 @@
 package com.github.daggerok;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
+import io.vertx.core.Vertx;
+import io.vertx.ext.web.common.template.TemplateEngine;
+import io.vertx.ext.web.templ.thymeleaf.ThymeleafTemplateEngine;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -13,10 +10,11 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import io.vertx.core.Vertx;
-import io.vertx.ext.web.common.template.TemplateEngine;
-import io.vertx.ext.web.templ.thymeleaf.ThymeleafTemplateEngine;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 @Singleton
 // @ApplicationScoped
@@ -70,12 +68,15 @@ public class Thymeleaf {
             engine.render(this.attributes, "templates/" + this.view, r -> {
                 // response.completeExceptionally(new RuntimeException("oops"));
                 if (r.failed()) response.complete(
-                    Response.status(Status.BAD_REQUEST)
-                            .entity(r.result().toString(StandardCharsets.UTF_8.displayName()))
-                            .type(MediaType.APPLICATION_JSON).build());
+                        Response.status(Status.BAD_REQUEST)
+                                .entity(r.cause().getLocalizedMessage())
+                                .type(MediaType.APPLICATION_JSON)
+                                .build());
                 else response.complete(
-                    Response.ok().entity(r.result().toString(StandardCharsets.UTF_8.displayName()))
-                            .type(MediaType.TEXT_HTML).build());
+                        Response.ok()
+                                .entity(r.result().toString(StandardCharsets.UTF_8.displayName()))
+                                .type(MediaType.TEXT_HTML)
+                                .build());
             });
             return response;
         }
