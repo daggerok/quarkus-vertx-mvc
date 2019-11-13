@@ -63,7 +63,7 @@ jobs:
         - http :8080
         - http :8080/a/b/c
         - http :8080/maksimko
-        - http :8080/quarkus/vertx/can/do/mvc
+        - http :8080/quarkus/vertx/can/do/mvc || echo 'expected 404'
         - stop_any 8080
 #    - stage: test
 #      name: kubectl integration test on k3d k3s k8s
