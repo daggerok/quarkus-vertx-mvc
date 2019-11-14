@@ -1,5 +1,5 @@
-# quarkus vertx thymeleaf [![Build Status](https://travis-ci.org/daggerok/quarkus-vertx-mvc.svg?branch=master)](https://travis-ci.org/daggerok/quarkus-vertx-mvc)
-Quarkus + Vertx + Thymeleaf (native builds doesn't work because of Thymeleaf)
+# quarkus vertx mvc [![Build Status](https://travis-ci.org/daggerok/quarkus-vertx-mvc.svg?branch=master)](https://travis-ci.org/daggerok/quarkus-vertx-mvc)
+Quarkus + Vertx + Thymeleaf, Freemarker, etc (native builds doesn't work because of template engine)
 
 ## dev
 
@@ -19,7 +19,7 @@ http :8080
 ## native
 
 NOTE: In general with supported library this approach should works fine. But
-now unfortunately, Thymeleaf apps are not supported for native builds...
+now unfortunately, Thymeleaf / Freemarker apps are not supported for native builds...
 
 ```bash
 docker build -f src/main/docker/Dockerfile.multistage -t daggerok/native-build .
